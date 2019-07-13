@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.board {
+  border: 29px outset #140E44;
+  border-radius: 15px;
+  background-color: "#2d2a2a";
+  min-height: "60%";
+}
+
+.leftmenu{
+    border: 29px outset #140E44;
+    padding: 10px;
+    box-sizing: content-box;
+    border-radius: 15px;
+    background-color: "#2d2a2a";
+    position: absolute;
+}
+
+.content-wrapper {
+  min-height: "60%";
+}
