@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Loading } from './common/loading'
 import Template from './templates/template'
 import { GuestRouter, AuthRouter } from './navigation/router'
-import { Container, Row, Col } from 'reactstrap';
+import { Container } from 'reactstrap';
 import { storage } from './api/storage'
 import * as api from './api/api'
+import { Provider } from 'react-redux'
+
+import { store } from './api/store'
 
 class App extends Component {
     constructor() {
@@ -41,6 +43,7 @@ class App extends Component {
     render() {
       const {isLoading} = this.state
       return(
+        <Provider store={store} >
         <div className="App">
         <Container fluid={true}>
             { isLoading ? <Loading size="lg" />
@@ -51,6 +54,7 @@ class App extends Component {
             }
         </Container>
         </div>
+        </Provider>
       )
     }
 
