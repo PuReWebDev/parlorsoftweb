@@ -15,3 +15,30 @@ export const Loading = ({size, type="spin", color="#e3e3e3"}) => {
          type={type} color={color} height={667} width={375} />
   )
 }
+
+Loading.propTypes = {
+  size: PropTypes.oneOf([
+    "xs",
+    "sm",
+    "md",
+    "lg"
+  ]),
+  type: PropTypes.oneOf([
+    "blank",
+    "balls",
+    "bars",
+    "bubbles",
+    "cubes",
+    "cylon",
+    "spin",
+    "spinningBubbles",
+    "spokes"
+  ]),
+  color: PropTypes.string
+}
+
+Loading.defaultProps = {
+  size: "sm",
+  color: "blue",
+  type: "balls"
+}

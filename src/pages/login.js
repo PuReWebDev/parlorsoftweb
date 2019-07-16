@@ -1,15 +1,12 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Form, FormGroup, Label, Input, FormFeedback, FormText, Button } from 'reactstrap'
-//do the registration then hook up redux :D
-import { useSelector } from 'react-redux'
+import * as api from '../api/api'
 
 export const Login = ({ response, err }) => {
-
-  const [isSubmitted,updateSubmit] = useState(false)
-  const [email,updateEmail] = useState("")
-  const [password,updatePassword] = useState("")
-
+  const [isSubmitted,updateSubmit]  = useState(false)
+  const [email,updateEmail]         = useState("")
+  const [password,updatePassword]   = useState("")
   const [message,updateFormMessage] = useState("")
 
   function changeFieldContent(e) {
@@ -31,11 +28,14 @@ export const Login = ({ response, err }) => {
     }
 
     if( !error ) {
-      return updateFormMessage("Sending...")
+        updateFormMessage("Sending...")
+        api.login(email,password)
     }
   }
 
-  const user = useSelector(state => state.authenticationReducer.user)
+  let user = api.getUser()
+
+
 
   return(
     <Form>

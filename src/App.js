@@ -9,7 +9,7 @@ import * as api from './api/api'
 import { Provider } from 'react-redux'
 
 import { store } from './api/store'
-
+/**TODO change this to a functional component*/
 class App extends Component {
     constructor() {
       super()
@@ -17,7 +17,6 @@ class App extends Component {
     }
 
     componentDidMount() {
-        //fetch authentication
         setTimeout(() => {
           this.setState({ isLoading: false })
         },100)
@@ -32,6 +31,8 @@ class App extends Component {
     }
 
     renderRouter = () => {
+      const user = api.getUser()
+      console.log("renderRouter",user)
       /**User is logged in*/
       if ( !false ) {
         return (<GuestRouter />)
