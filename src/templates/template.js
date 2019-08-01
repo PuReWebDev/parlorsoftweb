@@ -12,7 +12,7 @@ export const Template = () => {
   function renderRouter(){
     const user = api.getUser()
     /**User is logged in*/
-    if ( !true ) {
+    if ( user.id === null ) {
       return (<GuestRouter />)
     } else {
       return (<AuthRouter />)
