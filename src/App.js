@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Loading } from './common/loading'
-import Template from './templates/template'
+import { Template } from './templates/template'
 import { GuestRouter, AuthRouter } from './navigation/router'
 import { Container } from 'reactstrap';
 import { storage } from './api/storage'
@@ -26,18 +26,7 @@ class App extends Component {
       if( this.state.isLoading ) {
         return (<Loading size="lg" />)
       } else {
-        return (<p>ColonyOneGame</p>)
-      }
-    }
-
-    renderRouter = () => {
-      const user = api.getUser()
-      console.log("renderRouter",user)
-      /**User is logged in*/
-      if ( !false ) {
-        return (<GuestRouter />)
-      } else {
-        return (<AuthRouter />)
+        return (<p>Parlorsoft</p>)
       }
     }
 
@@ -49,9 +38,7 @@ class App extends Component {
         <Container fluid={true}>
             { isLoading ? <Loading size="lg" />
               :
-              <Template>
-                  {this.renderRouter()}
-              </Template>
+              <Template />
             }
         </Container>
         </div>
