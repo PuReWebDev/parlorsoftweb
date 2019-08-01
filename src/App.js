@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import ErrorBoundry from './common/error'
 import { Loading } from './common/loading'
 import { Template } from './templates/template'
 import { GuestRouter, AuthRouter } from './navigation/router'
@@ -13,7 +14,11 @@ import { store } from './api/store'
 class App extends Component {
     constructor() {
       super()
-        this.state={ isLoading: true }
+        this.state={
+           isLoading: true,
+           error: null,
+           errorInfo: ""
+        }
     }
 
     componentDidMount() {
@@ -21,6 +26,7 @@ class App extends Component {
           this.setState({ isLoading: false })
         },100)
     }
+
 
     renderContent = () => {
       if( this.state.isLoading ) {

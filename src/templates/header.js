@@ -15,9 +15,9 @@ export const Header = ({isAuth}) => {
     return (
       <div>
         <Navbar color="white" light expand="md">
-          <NavbarBrand><Link to="/"><small>ParlorSoft</small></Link></NavbarBrand>
           { !isAuth ?
             <>
+            <NavbarBrand><Link to="/"><small>ParlorSoft</small></Link></NavbarBrand>
           <NavbarToggler onClick={() => toggle(!isOpen)} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -32,6 +32,7 @@ export const Header = ({isAuth}) => {
           </>
           :
           <>
+          <NavbarBrand><Link to="/"><small>ParlorSoft</small></Link></NavbarBrand>
           <NavbarToggler onClick={() => toggle(!isOpen)} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>

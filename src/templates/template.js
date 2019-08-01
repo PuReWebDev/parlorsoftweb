@@ -3,6 +3,7 @@ import { Footer } from './footer'
 import { Container } from 'reactstrap'
 import { storage } from '../api/storage'
 import * as api from '../api/api'
+import ErrorBoundry from '../common/error'
 import { GuestRouter, AuthRouter } from '../navigation/router'
 
 
@@ -20,10 +21,12 @@ export const Template = () => {
 
     return(
       <>
+          <ErrorBoundry>
           <Container fluid  style={{minHeight: "50%"}}>
               {renderRouter()}
           </Container>
           <Footer />
+          </ErrorBoundry>
       </>
     )
 }
