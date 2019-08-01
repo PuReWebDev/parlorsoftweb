@@ -39,6 +39,7 @@ class App extends Component {
     render() {
       const {isLoading} = this.state
       return(
+        <ErrorBoundry>
         <Provider store={store} >
         <div className="App">
         <Container fluid={true}>
@@ -49,6 +50,7 @@ class App extends Component {
         </Container>
         </div>
         </Provider>
+        </ErrorBoundry>
       )
     }
 

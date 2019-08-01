@@ -7,7 +7,9 @@ const api = {
   store: useSelector,
   dispatch: useDispatch,
   types: {
-    ...AUTHENTICATION_TYPES
+    auth: {
+        ...AUTHENTICATION_TYPES
+    }
   },
   post: async (type, route, payload) => {
       return await api.fetch.post(route,{...payload})
@@ -24,6 +26,8 @@ api.fetch = axios.create({
     Accept: 'application/json',
   },
 });
+
+console.log("Api dump",api)
 
 // Setting up interceptor to add token
 /*
@@ -94,9 +98,9 @@ export function getUser() {
     return api.store(state => state.authenticationReducer.user)
 }
 
-export async function login(username,password) {
-    const { name, route } = api.types.AUTHENTICATION_TYPES.LOGIN
-    api.post(name, route, {username, password})
+export function login(username,password) {
+    const { name, route } = api.types.auth.LOGIN
+    return api.post(name, route, {username, password})
 }
 
 export function register(username,password) {

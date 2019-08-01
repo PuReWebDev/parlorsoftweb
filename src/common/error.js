@@ -24,7 +24,6 @@ export default class ErrorBoundry extends Component {
 
    renderErrorUi = () => {
      if( this.state.hasError ) {
-       console.error("This was captured by the error boundry", this)
        return(
            <>
            <h3>Whoops! Insert funny barber related error here</h3>
@@ -37,7 +36,6 @@ export default class ErrorBoundry extends Component {
    }
 
   render () {
-
        return(this.renderErrorUi())
   }
 }
