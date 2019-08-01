@@ -12,7 +12,7 @@ export const Template = () => {
   function renderRouter(){
     const user = api.getUser()
     /**User is logged in*/
-    if ( !false ) {
+    if ( !true ) {
       return (<GuestRouter />)
     } else {
       return (<AuthRouter />)
@@ -22,7 +22,7 @@ export const Template = () => {
     return(
       <>
           <ErrorBoundry>
-          <Container fluid  style={{minHeight: "50%"}}>
+          <Container className="content" fluid style={{minHeight: "50%"}}>
               {renderRouter()}
           </Container>
           <Footer />
