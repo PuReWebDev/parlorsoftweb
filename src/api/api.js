@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { AUTHENTICATION_TYPES } from './reducers/authenticationReducer'
 import { history } from './store'
 import axios from 'axios'
+import * as sys from '../systemActions'
 
 const api = {
   store: useSelector,
@@ -26,6 +27,71 @@ api.fetch = axios.create({
     Accept: 'application/json',
   },
 });
+
+/**Interceptor Configurations*/
+const isHandlerEnabled = (config={}) => {
+  return config.hasOwnProperty('handlerEnabled') && !config.handlerEnabled ?
+    false : true
+}
+
+const requestHandler = (request) => {
+  config => {
+    if (
+      localStorage.getItem('authentication') &&
+      localStorage.getItem('authentication-expires') > Date.now()
+    ) {
+      const token = JSON.parse(localStorage.getItem('authentication'));
+      return {
+        ...config,
+        headers: {
+          ...config.headers,
+          common: {
+            ...config.headers.common,
+            Authorization: `${token.token_type} ${token.access_token}`,
+          },
+        },
+      };
+    }
+
+    return config;
+  },
+  error => Promise.reject(error)
+}
+
+/**@var Error handle interceptors*/
+const errorHandler = (error) => {
+  error => {
+    // Redirect to login
+    if (
+      error.response &&
+      error.response.status === 401 &&
+      history.location.pathname !== '/login' &&
+      history.location.pathname !== '/logout' &&
+      !history.location.pathname.indexOf('/password-reset')
+    ) {
+      sys.logout()
+    }
+
+    return Promise.reject(error);
+  }
+}
+
+/**Any additional formatting*/
+const successHandler = (response) => {
+  if (isHandlerEnabled(response.config)) {
+    console.log("Success Interceptor")
+  }
+  return response
+}
+
+
+api.fetch.interceptors.request.use(
+  request => requestHandler(request),
+  error => errorHandler(error)
+)
+//Disable handler
+//await axiosInstance.get('/v2/api-endpoint', { handlerEnabled: false })
+
 
 console.log("Api dump",api)
 
