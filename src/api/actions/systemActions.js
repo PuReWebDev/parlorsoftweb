@@ -19,8 +19,11 @@ export function loginSuccess(response) {
     },
   });
 
-  const { lastPage } = store.getState().appState.authentication;
-
+  const lastPage = false
+  //TODO  const { lastPage } = store.getState().appState.authentication;
+  localStorage.removeItem('authentication');
+  localStorage.removeItem('authentication-expires');
+  /**TODO Store tokens*/
   history.push(lastPage || '/');
 }
 
