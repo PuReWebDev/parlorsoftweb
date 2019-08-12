@@ -1,15 +1,17 @@
+const localStorage = window.localStorage
+
 export function loginRequest() {
-  store.dispatch({
+  return {
     type: 'LOGIN_REQUEST',
     data: {
       isFetchingAuthentication: true,
       isAuthenticated: false,
     },
-  });
+  };
 }
 
 export function loginSuccess(response) {
-  store.dispatch({
+  return {
     type: 'LOGIN_SUCCESS',
     data: {
       isFetchingAuthentication: false,
@@ -17,42 +19,44 @@ export function loginSuccess(response) {
       token: response.data,
       message: '',
     },
-  });
+  };
 
-  const lastPage = false
+  /**TODO**/
+  //const lastPage = false
   //TODO  const { lastPage } = store.getState().appState.authentication;
-  localStorage.removeItem('authentication');
-  localStorage.removeItem('authentication-expires');
+  //localStorage.removeItem('authentication');
+  //localStorage.removeItem('authentication-expires');
   /**TODO Store tokens*/
-  history.push(lastPage || '/');
+  //history.push(lastPage || '/');
 }
 
 export function loginError(err) {
-  const error = common.getErrorMessage(err);
+  //const error = common.getErrorMessage(err);
 
-  store.dispatch({
+  return {
     type: 'LOGIN_ERROR',
     data: {
       isFetchingAuthentication: false,
       isAuthenticated: false,
-      message: error,
+      message: err,
     },
-  });
+  };
 }
 
 export function logout(manual) {
   localStorage.removeItem('authentication');
   localStorage.removeItem('authentication-expires');
 
-  store.dispatch({
+  return {
     type: 'LOGOUT',
     data: {
       isAuthenticated: false,
       token: {},
-      lastPage: history.location.pathname,
+      //lastPage: history.location.pathname,
     },
-  });
+  };
 
+/*
   if (
     history.location.pathname !== '/login' &&
     history.location.pathname !== '/logout' &&
@@ -64,16 +68,17 @@ export function logout(manual) {
       history.push('/login');
     }
   }
+  */
 }
 
 export function genericError(err) {
-  const error = common.getErrorMessage(err);
+  //const error = common.getErrorMessage(err);
 
-  store.dispatch({
+  return {
     type: 'GENERIC_ERROR',
     data: {
       isFetching: false,
-      message: error,
+      message: err,
     },
-  });
+  };
 }
