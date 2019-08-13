@@ -37,7 +37,7 @@ class App extends Component {
     }
 
     render() {
-      const {isLoading} = this.state
+      const { isLoading } = this.state
       return(
         <ErrorBoundry>
         <Provider store={store} >
