@@ -1,40 +1,52 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Form, FormGroup, Label, Input, FormFeedback, FormText, Button } from 'reactstrap'
-import * as api from '../api/api'
 import * as validate from '../api/validate'
+import * as api from '../api/api'
+
 
 export const Register = ({response, err}) => {
   const [isSubmitted,updateSubmit]   = useState(false)
   const [email,updateEmail]          = useState("")
   const [password,updatePassword]    = useState("")
   const [firstName, updateFirstName] = useState("")
+  const [lastName, updateLastName] = useState("")
   const [message,updateFormMessage]  = useState("")
 
   function changeFieldContent(e) {
 
     switch(e.target.name) {
-      case "username":
-          //
+      case "firstName":
+           updateFirstName(e.target.value)
+      break;
+      case "lastName":
+           updateLastName(e.target.value)
+      break;
+      case "email":
+          updateEmail(validate.email(e.target.value))
       break;
       case "password":
-         //
-      break
+          updatePassword(validate.password(e.target.value))
+      break;
+      default:
     }
     if( e.target.name === "password" ) {
-      updatePassword(e.target.value)
+      updatePassword(validate.password(e.target.value))
     } else {
-      updateEmail(e.target.value)
+      updateEmail(validate.email(e.target.value))
     }
   }
 
   function register() {
-    /**Register user**/
+      updateSubmit(true)
+      updateFormMessage("Sending...")
+      api.register(firstName,lastName,email,password)
   }
 
 
   return(
-    <Form>
+    <div class="center-form">
+    <Form className="form card form-push">
     {message}
       <FormGroup>
         <Label for="exampleEmail">Email</Label>
@@ -67,11 +79,27 @@ export const Register = ({response, err}) => {
           : null
         }
       </FormGroup>
+      <FormGroup>
+        <Label for="examplePassword">Password Confirmation</Label>
+        <Input
+            valid={err.email.hasError}
+            disabled={isSubmitted}
+            value={password}
+            onChange={changeFieldContent}
+            name="password"
+            className="form-control"
+        />
+        { err.password.hasError ?
+          <FormFeedback invalid tooltip>Not ready yet</FormFeedback>
+          : null
+        }
+      </FormGroup>
       <Button
       disabled={isSubmitted}
       onClick={register}
       >Login</Button>
     </Form>
+    </div>
   )
 }
 

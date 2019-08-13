@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Header } from '../templates/header'
 import SideBar from './sidebar/sideBar'
-import * as api from '../api/api'
+//import * as api from '../api/api'
 
 /*Guest Pages*/
 import { Login } from '../pages/login'

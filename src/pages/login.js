@@ -29,17 +29,16 @@ export const Login = ({ response, err }) => {
     }
 
     if( !error ) {
+        updateSubmit(true)
         updateFormMessage("Sending...")
         api.login(email,password)
     }
   }
 
-  let user = api.getUser()
-
-
 
   return(
-    <Form>
+    <div class="center-form">
+    <Form className="form card form-push">
     {message}
       <FormGroup>
         <Label for="exampleEmail">Email</Label>
@@ -77,6 +76,7 @@ export const Login = ({ response, err }) => {
       onClick={login}
       >Login</Button>
     </Form>
+    </div>
   )
 }
 

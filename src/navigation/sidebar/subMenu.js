@@ -13,7 +13,7 @@ const SubMenu = props => {
     <div>
       <NavItem onClick={toggleNavbar} className={classNames({'menu-open': !collapsed})}>
         <NavLink className="dropdown-toggle">
-               {title}
+               {icon} {title}
         </NavLink>
       </NavItem>
       <Collapse isOpen={!collapsed} navbar className={classNames('items-menu',{'mb-1': !collapsed})}>

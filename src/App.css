@@ -147,3 +147,14 @@ li a.dropdown-toggle::after {
         left: 68%;
     }
 }
+
+
+.center-form {
+  margin-right: auto;
+  margin-left: auto;
+  width: 50%;
+}
+
+.form-push {
+  padding: 6%;
+}
