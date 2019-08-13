@@ -48,6 +48,7 @@ export const Login = ({ response, err }) => {
             value={email}
             onChange={changeFieldContent}
             name="email"
+            type="email"
             className="form-control"
         />
         { err.email.hasError ?
@@ -64,6 +65,7 @@ export const Login = ({ response, err }) => {
             value={password}
             onChange={changeFieldContent}
             name="password"
+            type="password"
             className="form-control"
         />
         { err.password.hasError ?
