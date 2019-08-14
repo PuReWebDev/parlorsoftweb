@@ -10,7 +10,10 @@ const api = {
   types: {
     auth: {
         ...AUTHENTICATION_TYPES
-    }
+    },/*
+    sys: {
+        ...SYSTEM_SETTING_TYPES
+    }*/
   },
   post: async (type, route, payload) => {
       return await api.fetch.post(route,{...payload})
@@ -131,4 +134,22 @@ export function register(username,password) {
 
 export function logout() {
   console.log("logged out")
+}
+
+/**Update internal value**/
+/**
+* I.E. update the navigation toggle
+*/
+/*
+export function updateSystemValues(key, value) {
+    return api.dispatch({
+      type: api.types.sys.SYSTEM_SETTINGS_UPDATE,
+      payload: {
+        [key] : [value]
+      }
+    })
+}
+*/
+export function getSystemValues() {
+    return api.store(state => (state.system))
 }

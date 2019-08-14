@@ -1,3 +1,8 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   text-align: center;
 }
@@ -39,10 +44,22 @@
 .sidebar {
   min-width: 250px;
   max-width: 250px;
-  background: #7386D5;
+  background: #313233;
   color: #fff;
   margin-left: -250px;
   transition: all 0.5s;
+  position: absolute;
+  left: 0;
+}
+
+.sidebar a {
+  color: #fff;
+  background: #313233;
+}
+
+.sidebar .nav-item {
+  background: #fff;
+  opacity: 0.6;
 }
 
 .sidebar.is-open {
@@ -52,7 +69,7 @@
 
 
 .sidebar-header {
-  background: #6d7fcc;
+  background: #313233;
 }
 
 .sidebar-header h3{
@@ -66,7 +83,7 @@
 }
 
 .menu-open {
-  background: #6d7fcc;
+  background: #313233;
 }
 
 .nav-item:hover {
@@ -104,12 +121,12 @@ li a.dropdown-toggle::after {
 }
 
 .side-menu::-webkit-scrollbar-thumb {
-  background: #5466B3;
+  background: #313233;
   border-radius: 3px;
 }
 
 .side-menu::-webkit-scrollbar-thumb:hover {
-  background: #3A4C99;
+  background: #fff;
 }
 
 /* ---------------------------------------------------
@@ -157,4 +174,13 @@ li a.dropdown-toggle::after {
 
 .form-push {
   padding: 6%;
+}
+
+.fixed-tab{
+  position: fixed;
+  left: 0;
+}
+
+.fixed-tab:hover{
+  background: #007bff;
 }

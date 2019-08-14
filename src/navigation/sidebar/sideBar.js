@@ -1,15 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SubMenu from './subMenu';
 import { FaBeer } from 'react-icons/fa';
-import { NavItem, NavLink, Nav } from 'reactstrap';
+import { NavItem, NavLink, Nav, Input, Form, FormGroup, Label } from 'reactstrap';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
-const SideBar = props => (
-    <div className={classNames('sidebar', {'is-open': props.isOpen})}>
+const SideBar = () => {
+
+    const [isOpen, toggle] = useState(true)
+
+    function toggleMenu() {
+      toggle(!isOpen)
+    }
+
+    function renderPulltab() {
+      if( !isOpen ) {
+        return (<button className="fixed-tab" onClick={toggleMenu}>Pull Tab</button>)
+      }
+      return null
+    }
+
+    return (
+    <>
+    <div className={classNames('sidebar', {'is-open': isOpen})}>
+      {renderPulltab()}
       <div className="sidebar-header">
-        <span color="info" onClick={props.toggle} style={{color: '#fff'}}>&times;</span>
+        <button color="info" onClick={toggleMenu} style={{color: '#fff'}}>&times;</button>
         <h3>Username</h3>
+        <FormGroup>
+          <Label for="exampleSearch">Search</Label>
+          <Input
+            type="search"
+            name="search"
+            id="exampleSearch"
+            placeholder="search placeholder"
+          />
+        </FormGroup>
       </div>
       <div className="side-menu">
         <Nav vertical className="list-unstyled pb-3">
@@ -39,7 +65,9 @@ const SideBar = props => (
         </Nav>
       </div>
     </div>
-  );
+    </>
+    )
+  };
 
   const submenus = [
     [
