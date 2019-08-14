@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Form, FormGroup, Label, Input, FormFeedback, FormText, Button } from 'reactstrap'
 import * as api from '../api/api'
+import * as validate from '../api/validate'
 
 export const Login = ({ response, err }) => {
   const [isSubmitted,updateSubmit]  = useState(false)
@@ -19,26 +20,25 @@ export const Login = ({ response, err }) => {
 
   function login() {
     let error = false
-    if( email.length < 5 ) {
+    if( !validate.email(email) ) {
       return updateFormMessage("Invalid Email")
     }
 
-    if( password.length < 3 ) {
+    if( !validate.password(password) ) {
       return updateFormMessage("Invalid Password")
     }
 
     if( !error ) {
+        updateSubmit(true)
         updateFormMessage("Sending...")
         api.login(email,password)
     }
   }
 
-  let user = api.getUser()
-
-
 
   return(
-    <Form>
+    <div class="center-form">
+    <Form className="form card form-push">
     {message}
       <FormGroup>
         <Label for="exampleEmail">Email</Label>
@@ -48,6 +48,8 @@ export const Login = ({ response, err }) => {
             value={email}
             onChange={changeFieldContent}
             name="email"
+            type="email"
+            className="form-control"
         />
         { err.email.hasError ?
           <FormFeedback invalid tooltip>This isnt exactly right.</FormFeedback>
@@ -63,6 +65,8 @@ export const Login = ({ response, err }) => {
             value={password}
             onChange={changeFieldContent}
             name="password"
+            type="password"
+            className="form-control"
         />
         { err.password.hasError ?
           <FormFeedback invalid tooltip>Not ready yet</FormFeedback>
@@ -74,6 +78,7 @@ export const Login = ({ response, err }) => {
       onClick={login}
       >Login</Button>
     </Form>
+    </div>
   )
 }
 

@@ -3,10 +3,7 @@ import './App.css';
 import ErrorBoundry from './common/error'
 import { Loading } from './common/loading'
 import { Template } from './templates/template'
-import { GuestRouter, AuthRouter } from './navigation/router'
 import { Container } from 'reactstrap';
-import { storage } from './api/storage'
-import * as api from './api/api'
 import { Provider } from 'react-redux'
 
 import { store } from './api/store'
@@ -37,7 +34,7 @@ class App extends Component {
     }
 
     render() {
-      const {isLoading} = this.state
+      const { isLoading } = this.state
       return(
         <ErrorBoundry>
         <Provider store={store} >

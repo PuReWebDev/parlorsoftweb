@@ -23,17 +23,20 @@ export const AUTHENTICATION_TYPES = {
 };
 
 export default function authenticationReducer(prevState=initialState, {type,payload}) {
+    let result = {}
     switch( type ) {
     case AUTHENTICATION_TYPES.TEST.type:
-        return {payload}
+        result = {payload}
     break;
     case AUTHENTICATION_TYPES.LOGIN.type:
-        return {...prevState, payload}
+        result =  {...prevState, payload}
     break;
     case AUTHENTICATION_TYPES.REGISTER.type:
-        return {...prevState, payload}
+        result = {...prevState, payload}
     break;
     default:
-        return prevState
+        result =  prevState
     }
+
+    return result
 }
