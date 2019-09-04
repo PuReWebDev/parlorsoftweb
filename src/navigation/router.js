@@ -1,9 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Header } from '../templates/header'
-import SideBar from './sidebar/sideBar'
 /*Guest Pages*/
-import { Login } from '../pages/login'
+import Login from '../pages/login'
 import { Register } from '../pages/register'
 
 function checkAuth() {
@@ -41,9 +40,12 @@ export function AuthRouter() {
       <Header isAuth={true} />
           <div className="content-wrapper">
             <Route exact path="/" render={() => {}} />
+            <Route exact path="/dashboard" render={() => {}} />
+            <Route exact path="/clients" render={() => {}} />
+            <Route exact path="/mychar" render={() => {}} />
+            <Route exact path="/maps" render={() => {}} />
             <Route path="/logout" component={Login} />
           </div>
-      <SideBar />
     </Router>
   </>
   );
