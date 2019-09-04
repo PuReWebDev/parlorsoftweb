@@ -11,4 +11,4 @@ const exportReducers = combineReducers({
     authenticationReducer: authenticationReducer
 })
 
-export const store = createStore(exportReducers,initialState)
+export const store = createStore(exportReducers,{})

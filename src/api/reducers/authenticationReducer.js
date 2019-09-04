@@ -1,10 +1,7 @@
 
 
 const initialState = {
-  user: {
-    id: null,
-    email: ""
-  }
+  user: {}
 }
 
 export const AUTHENTICATION_TYPES = {
@@ -29,10 +26,10 @@ export default function authenticationReducer(prevState=initialState, {type,payl
         result = {payload}
     break;
     case AUTHENTICATION_TYPES.LOGIN.type:
-        result =  {...prevState, payload}
+        result =  {...prevState, user: payload}
     break;
     case AUTHENTICATION_TYPES.REGISTER.type:
-        result = {...prevState, payload}
+        result = {...prevState, user: payload}
     break;
     default:
         result =  prevState
