@@ -1,0 +1,190 @@
+html {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.App {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+.sidebar {
+  min-width: 250px;
+  max-width: 250px;
+  background: #33aaef;
+  color: #fff;
+  margin-left: -250px;
+  transition: all 0.2s;
+  position: absolute;
+  left: 0;
+}
+
+.sidebar a {
+  color: #fff;
+  background: #a54487;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+.sidebar .nav-item {
+  background: #33aaef;
+}
+
+.sidebar.is-open {
+  margin-left: 0;
+  transition: .2s;
+}
+
+
+.sidebar-header {
+  background: #313233;
+}
+
+.sidebar-header h3{
+  color: #fff;
+  padding: 1em;
+}
+
+.sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+.menu-open {
+  background: #33aaef;
+}
+
+.nav-item:hover {
+    color: #7386D5;
+    background: #fff;
+}
+
+.items-menu {
+  color: #fff;
+  background: #6d7fcc;
+}
+
+li a.dropdown-toggle::after {
+    display: inline-flex;
+    position: relative;
+    left: 60%;
+    top: 10%
+}
+
+.sidebar-header > span {
+    position: relative;
+    float: right;
+    margin: .5em;
+    font-size: 2rem;
+    cursor: pointer;
+    display: none;
+}
+.side-menu {
+  height: calc(100vh - 130px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.side-menu::-webkit-scrollbar {
+  width: 10px;
+}
+
+.side-menu::-webkit-scrollbar-thumb {
+  background: #313233;
+  border-radius: 3px;
+}
+
+.side-menu::-webkit-scrollbar-thumb:hover {
+  background: #fff;
+}
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+.content {
+  padding: 20px;
+  margin-left: 0;
+  height: 100vh;
+}
+
+@media only screen and (max-width: 500px) {
+    body {
+      overflow:  hidden;
+    }
+
+    .content.is-open {
+      margin-left: 100%;
+    }
+
+    .sidebar.is-open {
+      min-width: 100%;
+      max-width: 100%;
+      margin-left: 0;
+      transition: all 0.5s, height 0s;
+    }
+
+    .sidebar.is-open > .sidebar-header span{
+      display: unset;
+    }
+
+    li a.dropdown-toggle::after {
+        display: inline-block;
+        position: relative;
+        left: 68%;
+    }
+}
+
+
+.center-form {
+  margin-right: auto;
+  margin-left: auto;
+  width: 50%;
+}
+
+.form-push {
+  padding: 6%;
+}
+
+.fixed-tab{
+  position: fixed;
+  left: 0;
+}
+
+.fixed-tab:hover{
+  background: #007bff;
+}

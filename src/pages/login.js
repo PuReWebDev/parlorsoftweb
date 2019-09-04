@@ -1,85 +1,93 @@
-import React, { useState } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Form, FormGroup, Label, Input, FormFeedback, FormText, Button } from 'reactstrap'
 import * as api from '../api/api'
 import * as validate from '../api/validate'
+import { connect } from 'react-redux'
 
-export const Login = ({ response, err }) => {
-  const [isSubmitted,updateSubmit]  = useState(false)
-  const [email,updateEmail]         = useState("")
-  const [password,updatePassword]   = useState("")
-  const [message,updateFormMessage] = useState("")
+class Login extends Component {
 
-  function changeFieldContent(e) {
-    if( e.target.name === "password" ) {
-      updatePassword(e.target.value)
-    } else {
-      updateEmail(e.target.value)
+  constructor() {
+    super()
+    this.state = {
+      isSubmitted: false,
+      email: "",
+      password: "",
+      message: ""
     }
   }
 
-  function login() {
+  changeFieldContent = (e) => {
+      this.setState({
+        [e.target.name]: e.target.value
+      })
+  }
+
+  login = () =>  {
     let error = false
-    if( !validate.email(email) ) {
-      return updateFormMessage("Invalid Email")
+    if( !validate.email(this.state.email) ) {
+      return this.updateFormMessage("Invalid Email")
     }
 
-    if( !validate.password(password) ) {
-      return updateFormMessage("Invalid Password")
+    if( !validate.password(this.state.password) ) {
+      return this.updateFormMessage("Invalid Password")
     }
 
     if( !error ) {
-        updateSubmit(true)
-        updateFormMessage("Sending...")
-        api.login(email,password)
+        this.updateSubmit(true)
+        this.updateFormMessage("Sending...")
+        this.props.login(this.state.email,this.state.password)
     }
   }
 
+  updateFormMessage = (message) => {
+    this.setState({
+      message
+    })
+  }
 
+  updateSubmit = (setting) => {
+    this.setState({
+      isSubmitted: setting
+    })
+  }
+
+  render() {
   return(
-    <div class="center-form">
+    <div className="center-form">
     <Form className="form card form-push">
-    {message}
+    {this.message}
       <FormGroup>
         <Label for="exampleEmail">Email</Label>
         <Input
-            valid={err.email.hasError}
-            disabled={isSubmitted}
-            value={email}
-            onChange={changeFieldContent}
+            disabled={this.isSubmitted}
+            value={this.email}
+            onChange={this.changeFieldContent}
             name="email"
             type="email"
             className="form-control"
         />
-        { err.email.hasError ?
-          <FormFeedback invalid tooltip>This isnt exactly right.</FormFeedback>
-          : null
-        }
-        <FormText>Example help text that remains unchanged.</FormText>
-      </FormGroup>
-      <FormGroup>
-        <Label for="examplePassword">Password</Label>
-        <Input
-            valid={err.email.hasError}
-            disabled={isSubmitted}
-            value={password}
-            onChange={changeFieldContent}
+          <FormText>Example help text that remains unchanged.</FormText>
+          </FormGroup>
+          <FormGroup>
+          <Label for="examplePassword">Password</Label>
+          <Input
+            disabled={this.isSubmitted}
+            value={this.password}
+            onChange={this.changeFieldContent}
             name="password"
             type="password"
             className="form-control"
-        />
-        { err.password.hasError ?
-          <FormFeedback invalid tooltip>Not ready yet</FormFeedback>
-          : null
-        }
-      </FormGroup>
-      <Button
-      disabled={isSubmitted}
-      onClick={login}
-      >Login</Button>
-    </Form>
-    </div>
-  )
+          />
+          </FormGroup>
+          <Button
+            disabled={this.isSubmitted}
+            onClick={this.login}
+          >Login</Button>
+        </Form>
+      </div>
+    )
+  }
 }
 
 Login.propTypes = {
@@ -97,3 +105,9 @@ Login.defaultProps = {
     password: {hasError:false}
   }
 }
+
+const mapActionToProps = dispatch => ({
+  login: (email,password) => api.login(email,password,dispatch)
+})
+
+export default connect(null,mapActionToProps)(Login)

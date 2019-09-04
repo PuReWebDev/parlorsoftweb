@@ -31,3 +31,19 @@ code {
 .content-wrapper {
   min-height: "60%";
 }
+
+.toggle-btn-open {
+  background: transparent;
+  border: none;
+  color: white;
+  float: right;
+  font-size: 18px;
+}
+
+.toggle-btn-closed {
+    background: #33aaef;
+    color: #fff;
+    position: fixed;
+    left: 0;
+    transition: 300ms linear all;
+}
