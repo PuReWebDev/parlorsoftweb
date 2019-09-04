@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
+import './style/App.css';
 import ErrorBoundry from './common/error'
 import { Loading } from './common/loading'
-import { Template } from './templates/template'
+import Template from './templates/template'
 import { Container } from 'reactstrap';
 import { Provider } from 'react-redux'
 
@@ -19,9 +19,9 @@ class App extends Component {
     }
 
     componentDidMount() {
-        setTimeout(() => {
-          this.setState({ isLoading: false })
-        },100)
+        this.setState({
+          isLoading: false
+        })
     }
 
 
