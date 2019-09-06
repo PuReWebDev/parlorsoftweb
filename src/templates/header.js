@@ -151,7 +151,6 @@ export const Header = ({isAuth}) => {
           </Collapse>
           <br/>
           <SubMenu path={pathname.replace("/","")} />
-          <Redirect to="dashboard" />
           </>
           }
         </Navbar>
