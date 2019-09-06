@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { Header } from '../templates/header'
 /*Guest Pages*/
 import Login from '../pages/login'
@@ -21,7 +21,7 @@ export function GuestRouter() {
     <Router>
       <Header isAuth={false} />
       <div>
-        <Route exact path="/" render={() => {}} />
+        <Route exact path="/" component={Login} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
       </div>
@@ -39,11 +39,11 @@ export function AuthRouter() {
     <Router>
       <Header isAuth={true} />
           <div className="content-wrapper">
-            <Route exact path="/" render={() => {}} />
-            <Route exact path="/dashboard" render={() => {}} />
-            <Route exact path="/clients" render={() => {}} />
-            <Route exact path="/mychar" render={() => {}} />
-            <Route exact path="/maps" render={() => {}} />
+            <Route exact path="/" render={()=>{}} />
+            <Route path="/dashboard" render={() => {}} />
+            <Route path="/clients" render={() => {}} />
+            <Route path="/mychar" render={() => {}} />
+            <Route path="/maps" render={() => {}} />
             <Route path="/logout" component={Login} />
           </div>
     </Router>

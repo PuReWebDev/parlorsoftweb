@@ -2,7 +2,7 @@ import axios from 'axios';
 //import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux'
 import { AUTHENTICATION_TYPES } from './reducers/authenticationReducer'
-import { history } from './store'
+import { history } from './store' //This is useful
 import * as sys from './actions/systemActions'
 
 const localStoragePrefix = "parlorsoft_"
@@ -43,7 +43,7 @@ api.interceptors.request.use(
 );
 
 // Setting up intercepter to redirect to login for unauthenticated user
-/*
+
 api.interceptors.response.use(
   response => response,
   error => {
@@ -55,13 +55,13 @@ api.interceptors.response.use(
       history.location.pathname !== '/logout' &&
       !history.location.pathname.indexOf('/password-reset')
     ) {
-      appActions.logout();
+      logout()
     }
 
     return Promise.reject(error);
   }
 );
-*/
+
 // AUTHENTICATION
 
 /**
@@ -135,6 +135,9 @@ export function login(email,password,dispatch) {
 
 export function setToken(token) {
   oauthToken(token)
+}
+
+export function logout() {
 }
 
 export function register(email, password,username, dispatch) {

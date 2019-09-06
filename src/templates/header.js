@@ -7,11 +7,106 @@ import {
   Nav,
   NavItem,
   NavLink } from 'reactstrap';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
+import { history } from '../api/store'
+
+const SubMenu = ({path}) => {
+    console.log("submenu key",path)
+    switch(path) {
+      case "dashboard":
+          return (
+            <Nav>
+              <NavItem>
+                  <NavLink><Link to="dashboard/stats">Stats</Link></NavLink>
+              </NavItem>
+              <NavItem>
+                  <NavLink><Link to="dashboard/menuitem">Menu item</Link></NavLink>
+              </NavItem>
+              <NavItem>
+                  <NavLink><Link to="dashboard/menuitem">Menu item</Link></NavLink>
+              </NavItem>
+              <NavItem>
+                  <NavLink><Link to="dashboard/menuitem">Menu item</Link></NavLink>
+              </NavItem>
+              <NavItem>
+                  <NavLink><Link to="dashboard/menuitem">Menu item</Link></NavLink>
+              </NavItem>
+            </Nav>
+          )
+      break;
+      case "clients":
+          return (
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                  <NavLink><Link to="dashboard/stats">Stats</Link></NavLink>
+              </NavItem>
+              <NavItem>
+                  <NavLink><Link to="dashboard/menuitem">Menu item</Link></NavLink>
+              </NavItem>
+              <NavItem>
+                  <NavLink><Link to="dashboard/menuitem">Menu item</Link></NavLink>
+              </NavItem>
+              <NavItem>
+                  <NavLink><Link to="dashboard/menuitem">Menu item</Link></NavLink>
+              </NavItem>
+              <NavItem>
+                  <NavLink><Link to="dashboard/menuitem">Menu item</Link></NavLink>
+              </NavItem>
+            </Nav>
+          )
+      break;
+      case "mychair":
+          return (
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                  <NavLink><Link to="dashboard/stats">Stats</Link></NavLink>
+              </NavItem>
+              <NavItem>
+                  <NavLink><Link to="dashboard/menuitem">Menu item</Link></NavLink>
+              </NavItem>
+              <NavItem>
+                  <NavLink><Link to="dashboard/menuitem">Menu item</Link></NavLink>
+              </NavItem>
+              <NavItem>
+                  <NavLink><Link to="dashboard/menuitem">Menu item</Link></NavLink>
+              </NavItem>
+              <NavItem>
+                  <NavLink><Link to="dashboard/menuitem">Menu item</Link></NavLink>
+              </NavItem>
+            </Nav>
+          )
+      break;
+      case "maps":
+          return (
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                  <NavLink><Link to="dashboard/stats">Stats</Link></NavLink>
+              </NavItem>
+              <NavItem>
+                  <NavLink><Link to="dashboard/menuitem">Menu item</Link></NavLink>
+              </NavItem>
+              <NavItem>
+                  <NavLink><Link to="dashboard/menuitem">Menu item</Link></NavLink>
+              </NavItem>
+              <NavItem>
+                  <NavLink><Link to="dashboard/menuitem">Menu item</Link></NavLink>
+              </NavItem>
+              <NavItem>
+                  <NavLink><Link to="dashboard/menuitem">Menu item</Link></NavLink>
+              </NavItem>
+            </Nav>
+          )
+      break;
+      default:
+          return null
+    }
+}
 
 export const Header = ({isAuth}) => {
-  const [isOpen,toggle] = useState(false)
-    console.log("is authenticated",isAuth)
+    //For toggling
+    const { pathname } = history.location
+    const [isOpen,toggle] = useState(false)
+
     return (
       <div>
         <Navbar color="white" light expand="md">
@@ -29,6 +124,7 @@ export const Header = ({isAuth}) => {
               </NavItem>
             </Nav>
           </Collapse>
+          <Redirect to={ pathname } />
           </>
           :
           <>
@@ -53,6 +149,9 @@ export const Header = ({isAuth}) => {
               </NavItem>
             </Nav>
           </Collapse>
+          <br/>
+          <SubMenu path={pathname.replace("/","")} />
+          <Redirect to="dashboard" />
           </>
           }
         </Navbar>

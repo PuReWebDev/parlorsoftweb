@@ -19,7 +19,7 @@ class Template extends Component {
     this.props.getUser()
   }
 
-  renderRouter = () => {
+  renderPages = () => {
     const { user } = this.props
     /**User is logged in*/
     if ( /*user.id == null*/false ) {
@@ -33,9 +33,9 @@ class Template extends Component {
     return(
       <>
           <ErrorBoundry>
-          <Container className="content" fluid style={{minHeight: "50%"}}>
-              {this.renderRouter()}
-          </Container>
+              <Container className="content" fluid style={{minHeight: "50%"}}>
+                  {this.renderPages()}
+              </Container>
           <Footer />
           </ErrorBoundry>
       </>
