@@ -1,8 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
 import { Header } from '../templates/header'
+import { history } from '../api/store'
 /*App Pages*/
 import { Error404, Error500 } from '../common/error/'
+import { StyleGuide } from '../pages/dev/styleguide'
 /*Guest Pages*/
 import Login from '../pages/login'
 import { Register } from '../pages/register'
@@ -40,7 +42,7 @@ export function AuthRouter() {
   return (
     <>
     <Router>
-      <Header isAuth={true} />
+      <Header isAuth={true} pathname={history.location.pathname} />
           <div className="content-wrapper">
           <Switch>
             <Route exact path="/" render={()=>{}} />
@@ -49,6 +51,7 @@ export function AuthRouter() {
             <Route path="/mychair" render={() => {}} />
             <Route path="/maps" render={() => {}} />
             <Route path="/logout" component={Login} />
+            <Route path="/styleguide" component={StyleGuide} />
             <Route component={Error404} />
           </Switch>
           </div>
